@@ -40,8 +40,8 @@ zip4.batchAdd(files,function(){
 
 //zip a folder
 var zip5 = new easyzip.EasyZip();
-zip5.zipFolder('node_modules',function(){
-	zip5.writeToFile('folder.zip');
+zip5.zipFolder('../easy-zip',function(){
+	zip5.writeToFile('folderall.zip');
 });
 
 //write data to http.Response

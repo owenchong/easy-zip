@@ -72,7 +72,7 @@ EasyZip.prototype.zipFolder = function(folder,callback) {
 	}else{
 		var me = this,
 			files = fs.readdirSync(folder),
-			rootFolder = folder.replace(/.+\//g,''),
+			rootFolder = path.basename(folder),
 			zips = [],
 			file,stat,targetPath,sourcePath;
 		
