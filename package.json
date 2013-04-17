@@ -1,0 +1,28 @@
+{
+  "name": "easy-zip",
+  "version": "0.0.1",
+  "description": "Easy zip is extend from jszip,run in the nodejs.",
+  "author": {
+    "name": "Owen Zhong",
+    "email": "zhongxiaoagang888@gmail.com"
+  },
+  "main": "easyzip.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/owenchong/easy-zip"
+  },
+  "keywords": [
+    "nodejs",
+    "zip",
+    "node-zip",
+    "easy-zip",
+    "jszip"
+  ],
+  "dependencies": {
+    "async": "latest"
+  },
+  "license": "BSD"
+}
