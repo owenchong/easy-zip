@@ -1,6 +1,6 @@
 {
   "name": "easy-zip",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Easy zip is extend from jszip,run in the nodejs.",
   "author": {
     "name": "Owen Zhong",
