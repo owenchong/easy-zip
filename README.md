@@ -8,7 +8,7 @@ Easy zip is extend from [jszip](http://stuk.github.io/jszip/),and run in the nod
 var path = require('path'),
 	fs = require('fs'),
 	async = require('async'),
-	easyzip = require('./easyzip');
+	easyzip = require('easy-zip');
 
 var zip = new easyzip.EasyZip();
 //add text 
