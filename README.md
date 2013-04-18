@@ -5,24 +5,21 @@ Easy zip is extend from [jszip](http://stuk.github.io/jszip/),and run in the nod
 
 ## Examples
 ```js
-var path = require('path'),
-	fs = require('fs'),
-	async = require('async'),
-	easyzip = require('easy-zip');
+var EasyZip = require('easy-zip').EasyZip;
 
-var zip = new easyzip.EasyZip();
+var zip = new EasyZip();
 //add text 
 zip.file('hello.txt','Hello World！');
 zip.writeToFile('text.zip');//write zip data to disk
 
 //add folder
-var zip2 = new easyzip.EasyZip();
+var zip2 = new EasyZip();
 var jsFolder = zip2.folder('js');
 jsFolder.file('hello.js','alert("hello world")');
 zip2.writeToFile('folder.zip');
 
 //add file
-var zip3 = new easyzip.EasyZip();
+var zip3 = new EasyZip();
 zip3.addFile('main.js','easyzip.js',function(){
 	zip3.writeToFile('file.zip');
 });
@@ -33,13 +30,13 @@ var files = [
 	{target : 'img'},//if source is null,means make a folder
 	{source : 'jszip.js',target:'lib/tmp.js'}
 ];
-var zip4 = new easyzip.EasyZip();
+var zip4 = new EasyZip();
 zip4.batchAdd(files,function(){
 	zip4.writeToFile('batchadd.zip');
 });
 
 //zip a folder
-var zip5 = new easyzip.EasyZip();
+var zip5 = new EasyZip();
 zip5.zipFolder('../easy-zip',function(){
 	zip5.writeToFile('folderall.zip');
 });
