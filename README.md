@@ -1,4 +1,4 @@
-Easy zip is extend from [jszip](http://stuk.github.io/jszip/),and run in the nodejs.
+Easy zip is extend from [jszip](http://stuk.github.io/jszip/),and run in the node.
 
 ## Installation
     $ npm install easy-zip
