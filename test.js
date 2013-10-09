@@ -1,7 +1,7 @@
 var EasyZip = require('./easyzip').EasyZip;
 
 var zip = new EasyZip();
-//add text 
+//add text
 zip.file('hello.txt','Hello World！');
 zip.writeToFile('text.zip');//write zip data to disk
 
@@ -34,8 +34,14 @@ zip5.zipFolder('../easy-zip',function(){
 	zip5.writeToFile('folderall.zip');
 });
 
+//zip a folder and change folder destination name
+var zip6 = new EasyZip();
+zip6.zipFolder('../easy-zip',function(){
+    zip6.writeToFile('folderall.zip');
+}, {rootFolder: 'easy-zip6'});
+
 //write data to http.Response
 //zip.writeToResponse(response,'attachment.zip');
 
-//write to file sync 
+//write to file sync
 //zip.writeToFileSycn(filePath);
