@@ -1,7 +1,7 @@
 {
   "name": "easy-zip",
   "version": "0.0.4",
-  "description": "Easy zip is extend from jszip,run in the nodejs.",
+  "description": "Node-wrapped JSZip.",
   "author": {
     "name": "Owen Zhong",
     "email": "zhongxiaoagang888@gmail.com"
