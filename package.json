@@ -6,7 +6,7 @@
     "name": "Owen Zhong",
     "email": "zhongxiaoagang888@gmail.com"
   },
-  "main": "easyzip.js",
+  "main": "easy-zip.js",
   "scripts": {
     "test": "node test"
   },
