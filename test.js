@@ -1,4 +1,4 @@
-var EasyZip = require('./easyzip').EasyZip;
+var EasyZip = require('./easy-zip').EasyZip;
 
 var zip = new EasyZip();
 //add text
@@ -13,13 +13,13 @@ zip2.writeToFile('folder.zip');
 
 //add file
 var zip3 = new EasyZip();
-zip3.addFile('main.js','easyzip.js',function(){
+zip3.addFile('main.js','easy-zip.js',function(){
 	zip3.writeToFile('file.zip');
 });
 
 //batch add files
 var files = [
-	{source : 'easyzip.js',target:'easyzip.js'},
+	{source : 'easy-zip.js',target:'easy-zip.js'},
 	{target : 'img'},//if source is null,means make a folder
 	{source : 'jszip.js',target:'lib/tmp.js'}
 ];
