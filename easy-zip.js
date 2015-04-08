@@ -121,7 +121,7 @@ EasyZip.prototype.writeToFile = function(filePath,callback){
 		fs.writeFile(filePath, data, 'binary',callback);
 }
 
-EasyZip.prototype.writeToFileSycn = function(filePath){
+EasyZip.prototype.writeToFileSycn = EasyZip.prototype.writeToFileSync = function(filePath){
 	  var data = this.generate({base64:false,compression:'DEFLATE'});
 	  fs.writeFileSync(filePath, data, 'binary');
 }
