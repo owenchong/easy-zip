@@ -110,7 +110,7 @@ EasyZip.prototype.zipFolder = function(folder, callback, options) {
 
 EasyZip.prototype.writeToResponse = function(response,attachmentName){
 	attachmentName = attachmentName || new Date().getTime();
-	attachmentName += '.zip';
+	attachmentName = (attachmentName.match(/\.[a-zA-Z]{2,}/gi)) ? attachmentName : attachmentName+'.zip';
 	response.setHeader('Content-Disposition', 'attachment; filename="' +attachmentName + '"');
 	response.write(this.generate({base64:false,compression:'DEFLATE'}),"binary");
 	response.end();
