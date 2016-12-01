@@ -1,13 +1,14 @@
-Easy zip is extend from [jszip](http://stuk.github.io/jszip/),and run in the node.
+# [easy-zip](https://github.com/owenchong/easy-zip) — Node-wrapped [JSZip](http://stuk.github.io/jszip)
 
-## Installation
+## Install
     $ npm install easy-zip
 
-## Examples
+## Use
 ```js
 var EasyZip = require('easy-zip').EasyZip;
 
 var zip = new EasyZip();
+
 //add text
 zip.file('hello.txt','Hello World！');
 zip.writeToFile('text.zip');//write zip data to disk
@@ -48,10 +49,14 @@ zip6.zipFolder('../easy-zip',function(){
 }, {rootFolder: 'easy-zip6'});
 
 //write data to http.Response
-//zip.writeToResponse(response,'attachment.zip');
+zip.writeToResponse(response,'attachment.zip');
 
 //write to file sync
-//zip.writeToFileSycn(filePath);
+zip.writeToFileSycn(filePath);
 ```
+
+## Test
+	npm test
+
 ## License
 BSD
