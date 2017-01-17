@@ -21,19 +21,26 @@ function toArrayBuffer(buffer) {
 }
 
 EasyZip.prototype.addFile = function(file,filePath,callback){
-	var datas = [],
-		me = this,
-		rs = fs.createReadStream(filePath);
+	fs.access(filePath, fs.constants.R_OK, function(err) {
+		if (err) {
+			console.error("Easy-zip: Cannot read '%s'", filePath);
+			callback();
+		} else {
+			var datas = [],
+				me = this,
+				rs = fs.createReadStream(filePath);
 
-	rs.on('data',function(data){
-		datas.push(data);
-	})
+			rs.on('data',function(data){
+				datas.push(data);
+			})
 
-	rs.on('end',function(){
-		var buf = Buffer.concat(datas);
-		me.file(file, toArrayBuffer(buf),{base64:false, binary: true});
-		callback();
-	})
+			rs.on('end',function(){
+				var buf = Buffer.concat(datas);
+				me.file(file, toArrayBuffer(buf),{base64:false, binary: true});
+				callback();
+			})
+		}
+	}.bind(this));
 }
 
 EasyZip.prototype.batchAdd = function(files,callback) {
