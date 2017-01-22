@@ -40,7 +40,7 @@ EasyZip.prototype.batchAdd = function(files,callback) {
 	var me = this;
 	async.each(files,function(item,callback){
 		var source = item.source,
-			target = item.target,
+			target = item.target || item.source,
 			appender = me,
 			folder = item.folder,
 			fileName = path.basename(target),
