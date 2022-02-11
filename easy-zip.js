@@ -2,7 +2,7 @@ var util = require('util'),
 	async = require('async'),
 	path = require('path'),
 	buffer = require('buffer'),
-	fs = require('fs'),
+	fs = require('graceful-fs'),
 	jszip = require('./jszip');
 
 function EasyZip(){
@@ -108,9 +108,51 @@ EasyZip.prototype.zipFolder = function(folder, callback, options) {
 	}
 }
 
+EasyZip.prototype.zipContentFolder = function(folder, callback, options) {
+	if(!fs.existsSync(folder)){
+		callback(new Error('Folder not found'),me);
+	}else{
+		options = options || {};
+		var me = this,
+			files = fs.readdirSync(folder),
+			rootFolder = options.rootFolder || path.basename(folder),
+			zips = [],
+			file,stat,targetPath,sourcePath;
+
+		while(files.length > 0){
+			file = files.shift();
+			sourcePath = path.join(folder,file);
+			targetPath = file;
+			stat = fs.statSync(sourcePath);
+
+			if(stat.isFile()){
+				zips.push({
+					target : targetPath,
+					source : sourcePath
+				});
+			}else{
+				zips.push({
+					target : targetPath
+				});
+
+				//join the path
+				async.map(fs.readdirSync(sourcePath),function(item,callback){
+					callback(null,path.join(file,item));
+				},function(erro,result){
+					files = files.concat(result);
+				});
+
+			}
+		}
+
+		me.batchAdd(zips,function(){callback(null,me)});
+
+	}
+}
+
 EasyZip.prototype.writeToResponse = function(response,attachmentName){
 	attachmentName = attachmentName || new Date().getTime();
-	attachmentName += '.zip';
+	attachmentName = (attachmentName.match(/\.[a-zA-Z]{2,}/gi)) ? attachmentName : attachmentName+'.zip';
 	response.setHeader('Content-Disposition', 'attachment; filename="' +attachmentName + '"');
 	response.write(this.generate({base64:false,compression:'DEFLATE'}),"binary");
 	response.end();
@@ -125,7 +167,7 @@ EasyZip.prototype.writeToFile = function(filePath,callback){
 		});
 }
 
-EasyZip.prototype.writeToFileSycn = EasyZip.prototype.writeToFileSync = function(filePath){
+EasyZip.prototype.writeToFileSycn = function(filePath){
 	  var data = this.generate({base64:false,compression:'DEFLATE'});
 	  fs.writeFileSync(filePath, data, 'binary');
 }
